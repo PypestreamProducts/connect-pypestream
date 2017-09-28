@@ -15,7 +15,7 @@ Parameters:
   IntegrationEndpoint:
     AllowedPattern: ^https:\/\/[a-zA-Z0-9-\/\.]+$
     ConstraintDescription: Endpoint must be a valid https URL.
-    Default: https://ylw7087h90.execute-api.us-east-1.amazonaws.com/develop/pets
+    Default: https://ylw7087h90.execute-api.us-east-1.amazonaws.com/develop
     Description: The endpoint of the integration
     Type: String
 Rules:
@@ -53,22 +53,24 @@ Resources:
   IntegrationTestFunction:
       Type: AWS::Lambda::Function
       Properties:
-          Handler: lambda_function.lambda_handler
+          Handler: main.handler
           MemorySize: 128
           Role:
             Fn::GetAtt: IntegrationTestFunctionExecutionRole.Arn
           Runtime: python2.7
-          Timeout: 300
+          Timeout: 30
           Code:
             S3Bucket: quickstart-reference
             S3Key:
-              Fn::Sub: connect/integration/examples/latest/functions/packages/custom-resource/custom-resource.zip
+              Fn::Sub: connect/integration/examples/latest/functions/packages/integration-test/integration-test.zip
   IntegrationTest:
     Type: Custom::IntegrationTest
     Version: '1.0'
     Properties:
       ServiceToken:
         Fn::GetAtt: IntegrationTestFunction.Arn
+      IntegrationEndpoint:
+        Ref: IntegrationEndpoint
   IntegrationFunctionExecutionRole:
     Type: AWS::IAM::Role
     Properties:
@@ -89,16 +91,15 @@ Resources:
     Properties:
       Handler: index.handler
       Runtime: nodejs6.10
-      Description: Allows for communication between an Amazon Connect Contact Flow
-        and an API Gateway
+      Description: Amazon Connect Example Integration Function
       MemorySize: 128
       Timeout: 30
       Role:
         Fn::GetAtt: IntegrationFunctionExecutionRole.Arn
       Environment:
         Variables:
-          spiceSubdomain:
-            Ref: SpiceCSMSubdomain
+          IntegrationEndpoint:
+            Ref: IntegrationEndpoint
       Code:
         S3Bucket: quickstart-reference
         S3Key:
@@ -118,7 +119,7 @@ Outputs:
     Value:
       Fn::GetAtt: IntegrationFunctionExecutionRole.Arn
   IntegrationFunction:
-    Description: Lambda Function for SpiceCSM - Amazon Connect Integration
+    Description: Lambda Function for Amazon Connect Example Integration
     Value:
       Fn::GetAtt: IntegrationFunction.Arn
 ...

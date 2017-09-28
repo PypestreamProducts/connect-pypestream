@@ -1,8 +1,10 @@
 var http = require('http');
+var path = require('path');
+var integrationEndpoint = process.env['IntegrationEndpoint'];
 
 exports.handler = function (event, context) {
     console.log('Getting pet type cat')
-    http.get('https://ylw7087h90.execute-api.us-east-1.amazonaws.com/develop/pets/2', function (result) {
+    http.get(path.join(integrationEndpoint, '2'), function (result) {
         console.log('Success, with: ' + result.statusCode);
         context.done(null);
     }).on('error', function (err) {
