@@ -9,7 +9,7 @@ def handler(event, context):
             # Test Integration
             print 'Getting all pets'
             response = requests.get(event['ResourceProperties']['IntegrationEndpoint'])
-            print "Status code: " + response.status_code
+            print "Status code: " + str(response.status_code)
             if response.status_code != 200:
                 raise Exception('Error: Status code received is not 200')
         elif event['RequestType'] == 'Update':
