@@ -1,17 +1,13 @@
-#  Copyright 2016 Amazon Web Services, Inc. or its affiliates. All Rights Reserved.
-#  This file is licensed to you under the AWS Customer Agreement (the "License").
-#  You may not use this file except in compliance with the License.
-#  A copy of the License is located at http://aws.amazon.com/agreement/ .
-#  This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, express or implied.
-#  See the License for the specific language governing permissions and limitations under the License.
-
 import cfnresponse
 import traceback
 import boto3
 
 def lambda_handler(event,context):
     try:
-        if event['RequestType'] == 'Delete':
+        if event['RequestType'] == 'Create':
+            # Test Integration
+
+
             s3 = boto3.client('s3')
             # Delete KeyBucket contents
             print 'Getting KeyBucket objects...'
@@ -36,6 +32,11 @@ def lambda_handler(event,context):
                     versions=False
             if objects != []:
                 s3.delete_objects(Bucket=event["ResourceProperties"]["OutputBucket"],Delete={'Objects':objects})
+
+        if event['RequestType'] == 'Update':
+            pass
+        if event['RequestType'] == 'Delete':
+            pass
         cfnresponse.send(event, context, cfnresponse.SUCCESS, {}, '')
     except:
         print traceback.print_exc()

@@ -11,6 +11,7 @@ import json
 SUCCESS = "SUCCESS"
 FAILED = "FAILED"
 
+
 def send(event, context, responseStatus, responseData, physicalResourceId):
     responseUrl = event['ResponseURL']
 
@@ -26,14 +27,14 @@ def send(event, context, responseStatus, responseData, physicalResourceId):
     responseBody['Data'] = responseData
 
     json_responseBody = json.dumps(responseBody)
-   
+
     print "Response body:\n" + json_responseBody
 
     headers = {
-        'content-type' : '', 
-        'content-length' : str(len(json_responseBody))
+        'content-type': '',
+        'content-length': str(len(json_responseBody))
     }
-    
+
     try:
         response = requests.put(responseUrl,
                                 data=json_responseBody,

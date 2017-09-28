@@ -97,6 +97,12 @@ Resources:
       Principal: connect.amazonaws.com
       SourceAccount:
         Ref: AWS::AccountId
+   IntegrationTest:
+     Type: Custom::IntegrationTest
+     Version: 1.0
+     Properties:
+       ServiceToken:
+         Fn::GetAtt: DeleteBucketContentsLambda.Arn
   CFQuickStart:
     Type: Custom::LambdaCallout
     Properties:
