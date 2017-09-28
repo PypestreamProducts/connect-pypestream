@@ -29,7 +29,7 @@ Rules:
   ParameterDefaults:
     Assertions:
     - Assert:
-      - Fn::Not:
+        Fn::Not:
         - Fn::Equals:
           - Ref: IntegrationEndpoint
           - https://example.com/path
