@@ -12,11 +12,11 @@ Metadata:
       IntegrationEndpoint:
         default: Integration Endpoint
 Parameters:
-  IntegrationEndpoint:
+  IntegrationEndpoint: https://example.com/path
     AllowedPattern: ^https:\/\/[a-zA-Z0-9-\/\.]+$
     ConstraintDescription: Endpoint must be a valid https URL.
-    Default: https://demo-api.connect.awslabs.net/v1/pets
-    Description: The endpoint of the integration
+    Default:
+    Description: The endpoint of the integration. You may use https://demo-api.connect.awslabs.net/v1/pets as an example.
     Type: String
 Rules:
   RegionSupport:
