@@ -15,7 +15,7 @@ Parameters:
   IntegrationEndpoint:
     AllowedPattern: ^https:\/\/[a-zA-Z0-9-\/\.]+$
     ConstraintDescription: Endpoint must be a valid https URL.
-    Default: https://ylw7087h90.execute-api.us-east-1.amazonaws.com/develop
+    Default: https://demo-api.connect.awslabs.net/v1/pets
     Description: The endpoint of the integration
     Type: String
 Rules:
