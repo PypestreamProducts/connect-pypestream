@@ -12,11 +12,11 @@ Metadata:
       IntegrationEndpoint:
         default: Integration Endpoint
 Parameters:
-  IntegrationEndpoint: https://example.com/path
+  IntegrationEndpoint: https://prod-webserviceext-v3r3.pype.tech/v3/broadcast
     AllowedPattern: ^https:\/\/[a-zA-Z0-9-\/\.]+$
     ConstraintDescription: Endpoint must be a valid https URL.
     Default:
-    Description: The endpoint of the integration. You may use https://demo-api.connect.awslabs.net/v1/pets as an example.
+    Description: The endpoint of the integration. This is Pypestreams EBB Enpoint which will connect your AWS Connect to Pypestream.
     Type: String
 Rules:
   RegionSupport:
@@ -32,8 +32,8 @@ Rules:
         Fn::Not:
         - Fn::Equals:
           - Ref: IntegrationEndpoint
-          - https://example.com/path
-      AssertDescription: Amazon Connect Example Integration parameters cannot be defaults
+          - https://prod-webserviceext-v3r3.pype.tech/
+      AssertDescription: Pypesteram Platform
 Resources:
   IntegrationTestFunctionExecutionRole:
     Type: AWS::IAM::Role
