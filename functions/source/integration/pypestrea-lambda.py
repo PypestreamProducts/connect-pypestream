@@ -20,8 +20,7 @@ def lambda_handler(event, context):
     data = parse.urlencode(post_params).encode()
 
     req = request.Request(populated_url)
-    req.add_header("Authorization", "{} {}".client_Key,client_Secret)
-
+    req.add_header("Authorization", "{} {}".format(str(client_Key),str(client_Secret)))
     req.add_header("Content-Type", "application/json")
     req.add_header("Accept", "application/json")
 
@@ -33,4 +32,3 @@ def lambda_handler(event, context):
         return e
 
     return resultMap
-Add Comment C
