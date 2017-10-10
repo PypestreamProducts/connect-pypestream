@@ -14,6 +14,7 @@ For more information please: [https://www.pypestream.com/amazonconnect/](https:/
 
 This Connector will allow you to connect your AWS Connect Instance to Pypestream&#39;s messaging platform
 
+##
 To use the connector contact Pypestream for key and update .py file with the keys to connect your AWS Connect instance to Pypestream Messaging Platform.
 
 client\_Key =
